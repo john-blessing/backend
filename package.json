@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "express": "~4.13.4",
+    "mongoose": "^4.6.3",
+    "morgan": "~1.7.0",
+    "node-session": "^1.2.1",
+    "promise": "^7.1.1"
+  },
+  "devDependencies": {
+    "multer": "^1.2.0"
+  }
+}
