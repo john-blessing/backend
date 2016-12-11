@@ -1,4 +1,4 @@
-const Kitten = require('../models/model.js');
+const Kitten = require('../models/user.js');
 const Promise = require('promise');
 
 module.exports = {
@@ -15,13 +15,11 @@ module.exports = {
 				if(error) reject(new Error('request timeout'));
 
 				if(value.length > 0){
-					resolve(100);
+					resolve('用户登陆成功！');
 				} else {
-					reject(200);
+					reject('用户尚未注册！请先注册');
 				}
 			});
 		})
 	}
 }
-
-
