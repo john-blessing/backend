@@ -1,6 +1,6 @@
-const Service = require('../services/service.js');
 const fs = require('fs');
 const path = require('path');
+const product = require('../models/product.js');
 
 // sign with default (HMAC SHA256)
 var jwt = require('jsonwebtoken');
@@ -15,7 +15,7 @@ var older_token = jwt.sign({
 }, 'shhhhh');
 
 module.exports = {
-    checkLogin: function(req, res) {
+    checkLogin: function (req, res) {
         Service.checkLogin({
             name: req.body.name,
             password: req.body.password
@@ -28,32 +28,42 @@ module.exports = {
             res.json({
                 message: err
             });
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log(error);
         })
     },
-    getUserInfo: function(req, res) {
+    getUserInfo: function (req, res) {
         var queryUserInfo = Service.queryUserInfo();
-        queryUserInfo.then(function(value) {
+        queryUserInfo.then(function (value) {
             res.json({
                 user: value
             })
         })
     },
-    saveUser: function(req, res) {
+    saveUser: function (req, res) {
         Service.saveUser({
             name: req.body.name,
             password: req.body.password
-        }).then(function(value) {
+        }).then(function (value) {
             res.json({
                 status: value,
                 message: '注册成功!'
             });
-        }, function(reson) {
+        }, function (reson) {
             res.json({
                 status: 'error',
                 message: '注册失败!'
             })
         })
+    },
+    queryProducts: function (req, res) {
+        var params = {
+            // name: req.parmas.id,
+            // payment: req.parmas.pay
+        };
+
+        product.getProducts(params, function(data){
+            res.json(data);
+        });
     }
 };

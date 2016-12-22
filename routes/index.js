@@ -15,6 +15,7 @@ const upload = multer({ storage: storage })
 module.exports = {
 	RouteUrl:function(app){
 		app.get('/userInfo', ctr.getUserInfo);
+		app.get('/get_products', ctr.queryProducts);
 		app.post('/saveUser', ctr.saveUser);
 		app.post('/checkLogin', ctr.checkLogin);
 		app.post('/upload', upload.single('userPhoto'), function(req,res,next){
