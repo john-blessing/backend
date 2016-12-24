@@ -15,6 +15,14 @@ var older_token = jwt.sign({
 }, 'shhhhh');
 
 module.exports = {
+    login: function(req, res){
+        console.log(req.headers);
+        if(req.headers.authorization == 'Basic a2VpZmM6dGlnZXI='){
+            res.json({status: 200, msg: 'authonization'});            
+        } else {
+            res.json({status: 100, msg: 'need authonization'})
+        }
+    },
     checkLogin: function (req, res) {
         Service.checkLogin({
             name: req.body.name,

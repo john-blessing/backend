@@ -16,6 +16,7 @@ module.exports = {
 	RouteUrl:function(app){
 		app.get('/userInfo', ctr.getUserInfo);
 		app.get('/get_products', ctr.queryProducts);
+		app.get('/login', ctr.login);
 		app.post('/saveUser', ctr.saveUser);
 		app.post('/checkLogin', ctr.checkLogin);
 		app.post('/upload', upload.single('userPhoto'), function(req,res,next){
