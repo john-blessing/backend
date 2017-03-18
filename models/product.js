@@ -23,5 +23,11 @@ module.exports = {
         _fn(rows);
     });
     connection.end();
+  },
+  saveProduct: function(params, _fn){
+    connection.query('INSERT INTO products(p_pay,p_update,p_name,pid) VALUES('+params.price+', DATE_FORMAT(NOW(),"%Y,%m,%d"), '+params.pname+','+params.pid+')', function(error,rows, fields){
+        _fn();
+    });
+    connection.end();
   }
 };

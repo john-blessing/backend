@@ -1,30 +1,17 @@
-const ctr = require('../controller/controller');
-const multer  = require('multer')
-const fs = require('fs');
-const path = require('path');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
-const upload = multer({ storage: storage })
+const express = require('express');
+const router = express.Router();
+const ctrl = require('../controller/controller');
+const jwt = require('jsonwebtoken');
 
-module.exports = {
-	RouteUrl:function(app){
-		app.get('/userInfo', ctr.getUserInfo);
-		app.get('/get_products', ctr.queryProducts);
-		app.get('/login', ctr.login);
-		app.post('/saveUser', ctr.saveUser);
-		app.post('/checkLogin', ctr.checkLogin);
-		app.post('/upload', upload.single('userPhoto'), function(req,res,next){
-			if(req.file){
-				res.json({src: `http://localhost:8999/uploads/${req.file.originalname}`});
-			} else {
-				res.json({message: '599'})
-			}
-		});
-	}
-}
+router.get('/products', ctrl.queryProducts);
+
+router.post('/saveProduct', ctrl.saveProduct);
+
+router.post('/login', function(req, res, next) {
+    res.cookie('token', jwt.sign({
+        name: req.body.username,
+        password: req.body.password
+    }, "MY_SECRET"))
+    res.send('about')
+});
+module.exports = router;

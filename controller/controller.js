@@ -2,76 +2,26 @@ const fs = require('fs');
 const path = require('path');
 const product = require('../models/product.js');
 
-// sign with default (HMAC SHA256)
-var jwt = require('jsonwebtoken');
+exports.queryProducts = function(req, res) {
+    var params = {
+        // name: req.parmas.id,
+        // payment: req.parmas.pay
+    };
+    res.cookie('id','888')
+    product.getProducts(params, function(data) {
+        res.json({"statusCode":200, "message": data});
+        
+    });
+};
 
-// var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-//backdate a jwt 30 seconds
-var older_token = jwt.sign({
-    exp: Math.floor(Date.now() / 1000) + (60 * 60),
-    data: 'foobar',
-    foo: 'bar',
-    iat: Math.floor(Date.now() / 1000) - 30
-}, 'shhhhh');
+exports.saveProduct = function(req, res) {
+    var params = {
+        price: req.body.price,
+        pname: req.body.pname,
+        pid: req.body.pid
+    };
 
-module.exports = {
-    login: function(req, res){
-        console.log(req.headers);
-        if(req.headers.authorization == 'Basic a2VpZmM6dGlnZXI='){
-            res.json({status: 200, msg: 'authonization'});            
-        } else {
-            res.json({status: 100, msg: 'need authonization'})
-        }
-    },
-    checkLogin: function (req, res) {
-        Service.checkLogin({
-            name: req.body.name,
-            password: req.body.password
-        }).then((value) => {
-            res.cookie('sid', older_token).json({
-                message: value
-            })
-            res.end('success');
-        }, (err) => {
-            res.json({
-                message: err
-            });
-        }).catch(function (error) {
-            console.log(error);
-        })
-    },
-    getUserInfo: function (req, res) {
-        var queryUserInfo = Service.queryUserInfo();
-        queryUserInfo.then(function (value) {
-            res.json({
-                user: value
-            })
-        })
-    },
-    saveUser: function (req, res) {
-        Service.saveUser({
-            name: req.body.name,
-            password: req.body.password
-        }).then(function (value) {
-            res.json({
-                status: value,
-                message: '注册成功!'
-            });
-        }, function (reson) {
-            res.json({
-                status: 'error',
-                message: '注册失败!'
-            })
-        })
-    },
-    queryProducts: function (req, res) {
-        var params = {
-            // name: req.parmas.id,
-            // payment: req.parmas.pay
-        };
-
-        product.getProducts(params, function(data){
-            res.json(data);
-        });
-    }
+    product.saveProduct(params, function() {
+        res.json({ "statusCode": 201, "message": 1 });
+    });
 };
