@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const config = require('./config');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 //TODO 打印日志
 const logger = require('morgan');
@@ -9,6 +10,7 @@ const bodyParser = require('body-parser');
 // const route = require('./routes/index');
 const app = express();
 
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, './public')));
