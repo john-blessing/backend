@@ -25,3 +25,10 @@ exports.saveProduct = function(req, res) {
     //     res.json({ "statusCode": 201, "message": 1 });
     // });
 };
+
+/**
+ * 通过id删除指定的商品
+ */
+exports.deleteProductById = function(req, res){
+    
+}

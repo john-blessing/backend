@@ -22,6 +22,8 @@ router.post("/login", function(req, res, next) {
   res.send("about");
 });
 
+router.delete('/deleteProduct', ctrl.deleteProductById);
+
 router.post("/upload", function(req, res, next) {
   if (!req.files) return res.status(400).send("No files were uploaded.");
 
