@@ -6,7 +6,6 @@ const path = require("path");
 
 router.get("/allProducts", ctrl.queryAllProducts);
 
-router.post("/saveProduct", ctrl.saveProduct);
 
 router.post("/login", function(req, res, next) {
   res.cookie(
@@ -21,8 +20,6 @@ router.post("/login", function(req, res, next) {
   );
   res.send("about");
 });
-
-router.delete('/deleteProduct', ctrl.deleteProductById);
 
 router.post("/upload", function(req, res, next) {
   if (!req.files) return res.status(400).send("No files were uploaded.");

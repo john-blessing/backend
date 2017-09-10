@@ -13,9 +13,5 @@ const pool = mysql.createPool({
     console.log('Connection %d released', connection.threadId);
   });
 
-  pool.end(function (err) {
-    // all connections in the pool have ended
-    if(err) throw err;
-  });
-
   module.exports = pool;
+  
