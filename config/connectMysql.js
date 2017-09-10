@@ -9,4 +9,13 @@ const pool = mysql.createPool({
     debug: false
   });
 
+  pool.on('release', function (connection) {
+    console.log('Connection %d released', connection.threadId);
+  });
+
+  pool.end(function (err) {
+    // all connections in the pool have ended
+    if(err) throw err;
+  });
+
   module.exports = pool;
