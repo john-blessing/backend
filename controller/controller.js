@@ -1,17 +1,13 @@
 const fs = require('fs');
 const path = require('path');
-// const product = require('../models/product.js');
+const product = require('../models/product.js');
 
-exports.queryProducts = function(req, res) {
-    var params = {
-        // name: req.parmas.id,
-        // payment: req.parmas.pay
-    };
-    res.cookie('id','888')
-    // product.getProducts(params, function(data) {
-    //     res.json({"statusCode":200, "message": data});
-        
-    // });
+exports.queryAllProducts = function(req, res) {
+    product.getAllProducts().then((data) => {
+        res.json({"statusCode":200, "message": data});
+    }, (reason) => {
+        console.error(reason)
+    })
 };
 
 exports.saveProduct = function(req, res) {

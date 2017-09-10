@@ -4,7 +4,7 @@ const ctrl = require("../controller/controller");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 
-router.get("/products", ctrl.queryProducts);
+router.get("/allProducts", ctrl.queryAllProducts);
 
 router.post("/saveProduct", ctrl.saveProduct);
 
