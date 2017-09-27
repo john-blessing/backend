@@ -4,7 +4,7 @@ const ctrl = require("../controller/controller");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 
-router.get("/allProducts", ctrl.queryAllProducts);
+router.get("/getmac", ctrl.getMacAddress);
 
 
 router.post("/login", function(req, res, next) {
