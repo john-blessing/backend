@@ -14,6 +14,9 @@
     "jsonwebtoken": "^7.1.9",
     "morgan": "~1.7.0",
     "mysql": "^2.12.0",
+    "node-phantom": "^0.2.5",
+    "node-phantom-simple": "^2.2.4",
+    "phantomjs": "^2.1.7",
     "promise": "^7.1.1"
   },
   "devDependencies": {
