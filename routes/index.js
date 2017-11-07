@@ -90,6 +90,7 @@ router.get('/captureimg', function (req, res, next) {
   });
 })
 
+
 router.post('/add_persion', function(req, res, text){
 	var name = req.body.name;
 	var age = req.body.age;
@@ -98,6 +99,15 @@ router.post('/add_persion', function(req, res, text){
 	} else {
 		res.json({msg: 'fail'})
 	}
+
+/**
+ * 获取学员
+ */
+router.get('/get_student', function(req, res, error){
+	res.json({
+		name: 'tom',
+		age: 123
+	})
 })
 
 module.exports = router;
