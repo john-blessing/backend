@@ -91,7 +91,7 @@ router.get('/captureimg', function (req, res, next) {
 })
 
 
-router.post('/add_persion', function(req, res, text){
+router.post('/add_person', function(req, res, text){
 	var name = req.body.name;
 	var age = req.body.age;
 	if(name && age){
@@ -110,4 +110,7 @@ router.get('/get_student', function(req, res, error){
 	})
 })
 
+router.get('/update_person', function(req, res, next){
+	
+})
 module.exports = router;
