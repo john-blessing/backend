@@ -90,4 +90,14 @@ router.get('/captureimg', function (req, res, next) {
   });
 })
 
+router.post('/add_persion', function(req, res, text){
+	var name = req.body.name;
+	var age = req.body.age;
+	if(name && age){
+		res.json({msg: 'ok'})
+	} else {
+		res.json({msg: 'fail'})
+	}
+})
+
 module.exports = router;
