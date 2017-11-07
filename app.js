@@ -7,7 +7,7 @@ const fileUpload = require('express-fileupload');
 //TODO 打印日志
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const app = express();
+var app = express();
 
 app.use(fileUpload());
 app.use(logger('dev'));
