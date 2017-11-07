@@ -29,7 +29,7 @@ app.all("*", function(req, res, next) {
     next();
 });
 
-app.use('/api', routes);
+app.use('/api/v2', routes);
 
 var server = app.listen(config.port, function() {
     console.log('server has been started!');
