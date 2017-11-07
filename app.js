@@ -7,7 +7,7 @@ const fileUpload = require('express-fileupload');
 //TODO 打印日志
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-var app = express();
+const app = express();
 
 app.use(fileUpload());
 app.use(logger('dev'));
@@ -29,7 +29,7 @@ app.all("*", function(req, res, next) {
     next();
 });
 
-app.use('/api/v2', routes);
+app.use('/api', routes);
 
 var server = app.listen(config.port, function() {
     console.log('server has been started!');
