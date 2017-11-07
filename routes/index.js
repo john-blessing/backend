@@ -90,4 +90,14 @@ router.get('/captureimg', function (req, res, next) {
   });
 })
 
+/**
+ * 获取学员
+ */
+router.get('/get_student', function(req, res, error){
+	res.json({
+		name: 'tom',
+		age: 123
+	})
+})
+
 module.exports = router;
