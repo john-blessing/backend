@@ -99,7 +99,7 @@ router.post('/add_person', function(req, res, text){
 	} else {
 		res.json({msg: 'fail'})
 	}
-
+})
 /**
  * 获取学员
  */
@@ -113,4 +113,6 @@ router.get('/get_student', function(req, res, error){
 router.get('/update_person', function(req, res, next){
 	
 })
+
+
 module.exports = router;

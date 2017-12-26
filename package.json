@@ -21,5 +21,9 @@
   },
   "devDependencies": {
     "multer": "^1.2.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/john-blessing/backend.git",
+  "author": "john <1585185302@qq.com>",
+  "license": "MIT"
 }
