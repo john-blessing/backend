@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const ctrl = require("../controller/controller");
 const jwt = require("jsonwebtoken");
@@ -9,16 +9,45 @@ router.get("/getmac", ctrl.getMacAddress);
 
 
 router.post("/login", function (req, res, next) {
-  res.cookie(
-    "token",
-    jwt.sign({
-        name: req.body.username,
-        password: req.body.password
+  res.set({
+    'Authorization': jwt.sign({
+        exp: 10,
+        data: {
+          name: req.body.username,
+          password: req.body.password
+        }
       },
       "MY_SECRET"
     )
-  );
-  res.send("about");
+  })
+  res.end('ok')
+});
+
+router.get('/checkToken', function (req, res, next) {
+  // console.log(req.get('Authorization'))
+  try {
+    if (!req.get('Authorization')) {
+      res.json({
+        msg: '访问没有权限'
+      });
+      return;
+    }
+
+    jwt.verify(req.get('Authorization'), 'MY_SECRET', function (err, decoded) {
+      // console.log(decoded) // bar
+      if (decoded === undefined) {
+        res.json({
+          "msg": "token 已过期"
+        })
+      } else {
+        res.json({
+          "msg": "ok"
+        })
+      }
+    });
+  } catch(e) {
+    console.log(e)
+  }
 });
 
 router.post("/upload", function (req, res, next) {
@@ -91,27 +120,31 @@ router.get('/captureimg', function (req, res, next) {
 })
 
 
-router.post('/add_person', function(req, res, text){
-	var name = req.body.name;
-	var age = req.body.age;
-	if(name && age){
-		res.json({msg: 'ok'})
-	} else {
-		res.json({msg: 'fail'})
-	}
+router.post('/add_person', function (req, res, text) {
+  var name = req.body.name;
+  var age = req.body.age;
+  if (name && age) {
+    res.json({
+      msg: 'ok'
+    })
+  } else {
+    res.json({
+      msg: 'fail'
+    })
+  }
 })
 /**
  * 获取学员
  */
-router.get('/get_student', function(req, res, error){
-	res.json({
-		name: 'tom',
-		age: 123
-	})
+router.get('/get_student', function (req, res, error) {
+  res.json({
+    name: 'tom',
+    age: 123
+  })
 })
 
-router.get('/update_person', function(req, res, next){
-	
+router.get('/update_person', function (req, res, next) {
+
 })
 
 
